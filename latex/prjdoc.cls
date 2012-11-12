@@ -7,8 +7,7 @@
 \ProvidesClass{prjdoc}[%
   1999/08/30 v0.1 first implementation%
   2001/05/01 v0.2 minor changes
-  2012/11/12 v0.3 new DIV value to adapt the latest changes in the latex
-                  environment. Added new command \TBD{}.
+  2012/11/12 v0.3 new default for DIV value. Added TBD and history.
 ]%
 % this packages are required in the code of the options.
 \RequirePackage{lastpage}%
@@ -49,7 +48,7 @@
 \ProcessOptions\relax
 
 % load the parent class and the remaining styles
-\LoadClass[DIV10,headsepline]{scrartcl}
+\LoadClass[DIV12,headsepline]{scrartcl}
 \RequirePackage{ltxtable}%
 \RequirePackage{booktabs}%
 \RequirePackage{scrpage}%
@@ -118,7 +117,7 @@
             \PD@address{}%
           \end{center}%
           \vspace*{\stretch{2}}%
-        }%      
+        }%
 
     \ifthenelse{\boolean{PD@signfield}}%
     {\begin{tabularx}{\linewidth}{XXX}%
@@ -200,6 +199,7 @@
 }%
 
 
+
 % -----------------------------------------------------------------------
 % Commands for the definition of `Requests'
 
@@ -229,11 +229,45 @@
     \end{list}%
   }%
 
-
 % create a refence to the number of a request. A referenced request
 % have no brackets around the `name'.
 %
 \newcommand{\ReqRef}[1]{\textbf{A\ref{#1}}}
+
+
+% -----------------------------------------------------------------------
+
+% internally used command to print a margin note.
+%
+\newcommand{\PDmarginlabel}[1]%
+  {\mbox{}\marginpar{\raggedleft\footnotesize\hspace{0pt}#1}\ignorespaces}
+
+% environment to declare the history of an project.
+%
+\newenvironment{PDhistory}%
+  {%
+    \begin{list}{}%
+    {%
+      % eventuell Datum in Bold oder emph
+      \renewcommand{\makelabel}[1]{##1\hfill}%
+      \setlength{\labelwidth}{6em}%
+      \setlength{\leftmargin}{\labelwidth}%
+      \addtolength{\leftmargin}{\labelsep}%
+    }%
+  }%
+  {%
+    \end{list}%
+  }%
+
+% Declare one entry of an history. The date is passed to this command.
+% Optionally, a release string can be passed. This release string is
+% shown as margin paragraph.
+%
+\newcommand{\pdHist}[2][]{%
+  \item[#2]%
+  \ifthenelse{\equal{#1}{}}{}{\PDmarginlabel{\emph{#1}}}
+}%
+\newcommand{\pdHistBy}[1]{\textbf{#1:}}%
 
 
 % -----------------------------------------------------------------------
@@ -247,4 +281,4 @@
 
 \endinput
 %%
-%% End of file `prjdok.cls'.
+%% End of file `prjdoc.cls'.
