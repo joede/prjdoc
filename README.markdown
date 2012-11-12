@@ -6,7 +6,7 @@ additional styles for environments to define test cases and commands
 descriptions.
 
 I've written these styles as part of an ISO9001 project documentation in 1999.
-After reactivating this class as base of an pandoc template, I decide to make
+After reactivating this class as base of an pandoc template, I decided to make
 it public.
 
 I'm not a LaTeX developer, so don't expect to much. ;-)
