@@ -26,6 +26,7 @@
 %
 \newcommand*{\PD@author}{}%
 \newcommand*{\PD@company}{}%
+\newcommand*{\PD@address}{}%
 \newcommand*{\PD@prjname}{***need prjname***}%
 \newcommand*{\PD@doctype}{***need doctype***}%
 \newcommand*{\PD@revision}{***need revision***}%
@@ -58,6 +59,7 @@
 % functions to setup the local string constants
 \newcommand{\PDauthor}[1]{\renewcommand*{\PD@author}{#1}}%
 \newcommand{\PDcompany}[1]{\renewcommand*{\PD@company}{#1}}%
+\newcommand{\PDaddress}[1]{\renewcommand*{\PD@address}{#1}}%
 \newcommand{\PDprjname}[1]{\renewcommand*{\PD@prjname}{#1}}%
 \newcommand{\PDdoctype}[1]{\renewcommand*{\PD@doctype}{#1}}%
 \newcommand{\PDrevision}[1]{\renewcommand*{\PD@revision}{#1}}%
@@ -105,7 +107,18 @@
           \PD@author%
         }%
     \end{center}%
-    \vspace*{\stretch{3}}%
+
+    \ifthenelse{\equal{\PD@address}{}}%
+        {%
+          \vspace*{\stretch{3}}%
+        }%
+        {%
+          \vspace*{\stretch{1}}%
+          \begin{center}%
+            \PD@address{}%
+          \end{center}%
+          \vspace*{\stretch{2}}%
+        }%      
 
     \ifthenelse{\boolean{PD@signfield}}%
     {\begin{tabularx}{\linewidth}{XXX}%

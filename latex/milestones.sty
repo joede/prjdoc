@@ -1,0 +1,74 @@
+%% ----------------------------------------------------------------------
+%% `milestones.sty'  (c) 1999-2012  Joerg Desch <joerg.desch@gmail.com>
+%% License: GPL v3
+%% ----------------------------------------------------------------------
+%% This package implements an environment to declare milestones. Each
+%% declation of an Milestone gets its own number. Each number has the
+%% prefix `M'. The optional parameter to \item is used as label to the
+%% number of the milestone. I'm using `ms:' as prefix for the name of the
+%% label.
+%%
+%%
+\NeedsTeXFormat{LaTeX2e}[1994/12/01]%
+\ProvidesPackage{milestones}[%
+  1999/08/31 v0.1 milestones for project documentation%
+]%
+% -----------------------------------------------------------------------
+%
+\newcounter{MS@milestonenr}
+\DeclareRobustCommand*{\MS@milestonefont}{\@empty}%
+
+
+% -----------------------------------------------------------------------
+% code to process the options
+%
+\DeclareOption{bf}{%
+  \renewcommand*{\MS@milestonefont}{\bfseries}%
+}%
+\DeclareOption{it}{%
+  \renewcommand*{\MS@milestonefont}{\itshape}%
+}%
+\ExecuteOptions{bf}%
+\ProcessOptions*%
+
+\RequirePackage{ifthen}
+
+
+% -----------------------------------------------------------------------
+% internal commands
+%
+
+
+% -----------------------------------------------------------------------
+% exported commands and environments
+
+% This is a special environment to list and describe milestones. The
+% environment use it's own global counter, so we get unique numbers.
+%
+\newenvironment{Milestones}{%
+  \begin{list}%
+    {}%
+    {%
+      \renewcommand{\makelabel}[1]%
+      {%
+        \refstepcounter{MS@milestonenr}%
+        {\MS@milestonefont M\arabic{MS@milestonenr}:}%
+        \ifthenelse{\equal{##1}{}}{}{\label{##1}}%
+        \hfill%
+      }%
+      \setlength{\labelwidth}{6ex}%
+      \setlength{\leftmargin}{\labelwidth}%
+      \addtolength{\leftmargin}{\labelsep}%
+    }%
+}{%
+  \end{list}%
+}%
+
+% create a refence to the number of a milestone. A referenced milestone
+% has no `:' after it's `name'.
+%
+\newcommand{\MSRef}[1]{{\MS@milestonefont M\ref{#1}}}
+
+\endinput
+%%
+%% End of file `milestones.sty'.
