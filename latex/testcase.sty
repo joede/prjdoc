@@ -1,0 +1,132 @@
+%% ----------------------------------------------------------------------
+%% `testcase.sty'  (c) 1999-2012  Joerg Desch <joerg.desch@gmail.com>
+%% License: GPL v3
+%% ----------------------------------------------------------------------
+%% This package implements an environment to declare test cases. A case
+%% consits of the following entries:
+%%
+%%   * Subject:
+%%   * Remark:
+%%   * Test condition
+%%   * Test proceeding:
+%%   * Goal:
+%%   * Error treatment:
+%%
+%% The labels of theses entries could either be printed in italic (package
+%% option it) or bold (option bf). Supported languages are German (default)
+%% and English (option english).
+%%
+%% ----------------------------------------------------------------------
+%%
+\NeedsTeXFormat{LaTeX2e}[1994/12/01]%
+\ProvidesPackage{testcase}[%
+  1999/08/31 v0.1 testcases for project documentation%
+]%
+% -----------------------------------------------------------------------
+%
+\newcounter{TC@testnr}
+\newlength{\TC@testcasemargin}%
+\setlength{\TC@testcasemargin}{0.25\columnwidth}%
+\DeclareRobustCommand*{\TC@testcasefont}{\@empty}%
+
+% -----------------------------------------------------------------------
+% redefinable string constants
+%
+\newcommand*{\tcSubject}{\item[Gegenstand:]}%
+\newcommand*{\tcRemark}{\item[Bemerkung:]}%
+\newcommand*{\tcConditions}{\item[Testbedingung:]}%
+\newcommand*{\tcProceeding}{\item[Testverfahren:]}%
+\newcommand*{\tcGoal}{\item[Testziel:]}%
+\newcommand*{\tcError}{\item[Fehlerbehandlung:]}%
+\newcommand*{\tcItem}[1]{\item[#1]}%
+
+% -----------------------------------------------------------------------
+% code to process the options
+%
+\DeclareOption{bf}{%
+  \renewcommand*{\TC@testcasefont}{\bfseries\footnotesize}%
+  \setlength{\TC@testcasemargin}{0.3\columnwidth}%
+}%
+\DeclareOption{it}{%
+  \renewcommand*{\TC@testcasefont}{\itshape\footnotesize}%
+  \setlength{\TC@testcasemargin}{0.25\columnwidth}%
+}%
+\DeclareOption{english}{%
+  \renewcommand*{\tcSubject}{\item[Subject:]}%
+  \renewcommand*{\tcRemark}{\item[Remark:]}%
+  \renewcommand*{\tcConditions}{\item[Test conditions:]}%
+  \renewcommand*{\tcProceeding}{\item[Test proceeding:]}%
+  \renewcommand*{\tcGoal}{\item[Goal:]}%
+  \renewcommand*{\tcError}{\item[Error treatment:]}%
+}%
+\ExecuteOptions{it}%
+\ProcessOptions*%
+
+\RequirePackage{ifthen}
+
+
+% -----------------------------------------------------------------------
+% internal commands
+%
+
+% Create the header of the testcase. This command uses the counter `TC@testnr'
+% to create the test number. The regular parameter is used als `error class'.
+% The command have an optional parameter. This is a label to reference the
+% test number (the counter).
+%
+\DeclareRobustCommand*{\TC@testtitle}[2][]{% #1 = optional, #2 = notwendig
+  \refstepcounter{TC@testnr}%
+  \medskip\noindent\rule{\linewidth}{.2mm}\newline%
+  \noindent{\bfseries\footnotesize Test~\arabic{TC@testnr}%
+    \ifthenelse{\equal{#1}{}}{}{\label{#1}}%
+    \hfill #2\newline%
+  }%
+  \rule[.5\baselineskip]{\linewidth}{.2mm}%
+}%
+
+
+% Create a minipage with the given `item text'
+%
+\DeclareRobustCommand*{\@makeTC@testcase}[1]{%
+  \begin{minipage}[b]{\labelwidth}%
+    \vspace{\parsep}%
+    \raggedleft\TC@testcasefont\hspace{0pt}#1%
+  \end{minipage}%
+}%
+
+
+% -----------------------------------------------------------------------
+% exported commands and environments
+
+% This is a special environment to describe all aspects of a `test case'.
+% The enviroment is represented as a list of predefined items (see the
+% above string constants). The header of the environment holds the
+% automagicly generated test number, and the given error class.
+%
+% The environment have an optional parameter. This is a label to reference
+% the test number (the counter).
+%
+\newenvironment{testcase}[2][]{% #1 = optional, #2 = notwendig
+  \TC@testtitle[#1]{#2}%
+  \begin{list}%
+    {}%
+    {%
+%      \setlength{\topsep}{0ex}%
+%      \setlength{\partopsep}{0ex}%
+      \setlength{\leftmargin}{\TC@testcasemargin}%
+      \setlength{\labelwidth}{\TC@testcasemargin}%
+      \setlength{\labelsep}{1em}%
+      \addtolength{\labelwidth}{-\labelsep}%
+%      \setlength{\itemsep}{0ex}%
+      \renewcommand*{\makelabel}[1]{%
+        \@makeTC@testcase{##1}%
+      }%
+    }%
+}{%
+  \end{list}%
+}%
+
+
+\endinput
+%%
+%% End of file `testfall.sty'.

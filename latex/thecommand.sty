@@ -1,0 +1,147 @@
+%% ----------------------------------------------------------------------
+%% `thecommand.sty'  (c) 1999-2012  Joerg Desch <joerg.desch@gmail.com>
+%% License: GPL v3
+%% ----------------------------------------------------------------------
+%%
+%% This package defines a new environment `thecommand'. This environment allows
+%% the description of a `communication command' or `programming function'. So
+%% this package will only be important for programmers.
+%%
+%% The package understand three options. [bf] print the labels in bold face,
+%% while [it] (the default) use \emph{}. [english] switch the label names from
+%% german to english.
+%%
+%% The environment `thecommand' has two parameter. One is optional and the
+%% other must be given. The needed one is the name of the command. This name
+%% is typeset between two horizontal lines. This line introcude the decription.
+%% The optional parameter is used as parameter for a call to \index{}! So if
+%% want to use an index, use this parameter! NOTE: you have to insert calls to
+%% \makeindex and \printindex in your document!
+%%
+%% Inside the environment, the author can use special item-commands. Each of
+%% this items print a label which describe the type of the description text.
+%%
+%% The following item-commands are available:
+%%
+%% \pdSyntax    the general format of the command / function. This could be a
+%%              abstract command or a function prototyp.
+%% \pdCmdCode   the command code etc.
+%% \pdParam     all given paramters
+%% \pdReturn    the returned value / data structure
+%% \pdDesc      the decription of the whole thing.
+%% \pdSample    this is the place to insert a sample
+%% \pdSeeAlso   textual references to other command names etc.
+%% \pdCmdItem   insert the parameter as `user defined' label.
+%%
+%% ----------------------------------------------------------------------
+\NeedsTeXFormat{LaTeX2e}[1994/12/01]%
+\ProvidesPackage{thecommand}[2000/3/30 v0.3 command descriptions]%
+% -----------------------------------------------------------------------
+%
+\newlength{\JD@commandmargin}%
+\setlength{\JD@commandmargin}{0.25\columnwidth}%
+\DeclareRobustCommand*{\JD@commandfont}{\@empty}%
+
+% -----------------------------------------------------------------------
+% redefinable string constants
+%
+\newcommand*{\pdSyntax}{\item[Syntax:]}%
+\newcommand*{\pdCmdCode}{\item[Befehlscode:]}%
+\newcommand*{\pdParam}{\item[Parameter:]}%
+\newcommand*{\pdReturn}{\item[R\"uckgabe:]}%
+\newcommand*{\pdDesc}{\item[Beschreibung:]}%
+\newcommand*{\pdSample}{\item[Beispiel:]}%
+\newcommand*{\pdSeeAlso}{\item[Siehe auch:]}%
+\newcommand*{\pdCmdItem}[1]{\item[#1]}%
+
+% -----------------------------------------------------------------------
+% code to process the options
+%
+\DeclareOption{bf}{%
+  \renewcommand*{\JD@commandfont}{\bfseries\footnotesize}%
+  \setlength{\JD@commandmargin}{0.3\columnwidth}%
+}%
+\DeclareOption{it}{%
+  \renewcommand*{\JD@commandfont}{\itshape\footnotesize}%
+  \setlength{\JD@commandmargin}{0.25\columnwidth}%
+}%
+\DeclareOption{english}{%
+  \renewcommand*{\pdSyntax}{\item[Syntax:]}%
+  \renewcommand*{\pdCmdCode}{\item[Command code:]}%
+  \renewcommand*{\pdParam}{\item[Parameters:]}%
+  \renewcommand*{\pdReturn}{\item[Returns:]}%
+  \renewcommand*{\pdDesc}{\item[Description:]}%
+  \renewcommand*{\pdSample}{\item[Sample:]}%
+  \renewcommand*{\pdSeeAlso}{\item[See also:]}%
+}%
+\ExecuteOptions{it}%
+\ProcessOptions*%
+
+\RequirePackage{ifthen}
+\RequirePackage{makeidx}
+
+
+% -----------------------------------------------------------------------
+% internal commands
+%
+% Create the header of the thecommand. The regular parameter is used as
+% `command name'. The command has an optional parameter. If it is used, this
+% parameter is used for the index. If not, the regular parameter is used
+% instead.
+%
+\DeclareRobustCommand*{\JD@testtitle}[2][]{% #1 = optional, #2 = notwendig
+  \medskip\noindent\rule{\linewidth}{.2mm}\newline%
+  \noindent{%
+    \ifthenelse{\equal{#1}{}}{}{\index{#1}}%
+    %\hfill%
+    #2\newline%
+  }%
+  \rule[.5\baselineskip]{\linewidth}{.2mm}%
+}%
+
+
+% Create a minipage with the given `item text'
+%
+\DeclareRobustCommand*{\@makeJD@command}[1]{%
+  \begin{minipage}[b]{\labelwidth}%
+    \vspace{\parsep}%
+    \raggedleft\JD@commandfont\hspace{0pt}#1%
+  \end{minipage}%
+}%
+
+
+% -----------------------------------------------------------------------
+% exported commands and environments
+
+% This is a special environment to describe all aspects of a `test case'.
+% The enviroment is represented as a list of predefined items (see the
+% above string constants). The header of the environment holds the
+% automagicly generated test number, and the given error class.
+%
+% The environment have an optional parameter. This is a label to reference
+% the test number (the counter).
+%
+\newenvironment{thecommand}[2][]{% #1 = optional, #2 = notwendig
+  \JD@testtitle[#1]{#2}%
+  \begin{list}%
+    {}%
+    {%
+%      \setlength{\topsep}{0ex}%
+%      \setlength{\partopsep}{0ex}%
+      \setlength{\leftmargin}{\JD@commandmargin}%
+      \setlength{\labelwidth}{\JD@commandmargin}%
+      \setlength{\labelsep}{1em}%
+      \addtolength{\labelwidth}{-\labelsep}%
+%      \setlength{\itemsep}{0ex}%
+      \renewcommand*{\makelabel}[1]{%
+        \@makeJD@command{##1}%
+      }%
+    }%
+}{%
+  \end{list}%
+}%
+
+
+\endinput
+%%
+%% End of file `thecommand.sty'.
