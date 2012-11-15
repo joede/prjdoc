@@ -142,7 +142,7 @@
 % -----------------------------------------------------------------------
 % ISO-style header and footer
 
-\deftripstyle{PDheading}[.4pt]% Name und Strichst„rken
+\deftripstyle{PDheading}[.4pt]%
   {%
     \ifthenelse{\boolean{PD@isManual}}%
       {% -- Header of the manual
@@ -213,7 +213,9 @@
       \renewcommand{\makelabel}[1]%
         {%
           \refstepcounter{PD@requestnr}%
-          \textbf{[A\arabic{PD@requestnr}]}%
+          \ifthenelse{\boolean{PD@useEnglish}}
+          {\textbf{[R\arabic{PD@requestnr}]}}%
+          {\textbf{[A\arabic{PD@requestnr}]}}%
           \ifthenelse{\equal{##1}{}}{}{\label{##1}}%
           \hfill%
         }%
@@ -232,7 +234,11 @@
 % create a refence to the number of a request. A referenced request
 % have no brackets around the `name'.
 %
-\newcommand{\ReqRef}[1]{\textbf{A\ref{#1}}}
+\newcommand{\ReqRef}[1]{%
+  \ifthenelse{\boolean{PD@useEnglish}}%
+  {\textbf{R\ref{#1}}}%
+  {\textbf{A\ref{#1}}}%
+}
 
 
 % -----------------------------------------------------------------------

@@ -1,0 +1,14 @@
+Source: prjdoc
+Section: tex
+Priority: optional
+Maintainer: Joerg Desch <joerg.desch@gmail.com>
+Standards-Version: 3.7.2
+Build-Depends: debhelper (>= 5.0.0)
+
+Package: prjdoc
+Architecture: all
+Depends: texlive-latex-base, texlive-latex-extra, rcs-latex|jd-rcs-latex
+Recommends: texlive-base-bin
+Description: LaTeX class for writing project documentation
+ Prjdoc is a class for writing documents for project documentation. It
+ tries to implement a ISO-9001 aware document layout.

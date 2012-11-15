@@ -1,0 +1,61 @@
+#!/usr/bin/make -f
+# debian/rules for prjdoc package.
+# copyright 2002 by Jörg Desch
+# This file is original wrote by Joey Hess.
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+build: build-stamp
+
+build-stamp:
+	dh_testdir
+
+	#/usr/bin/docbook-to-man debian/prjdoc.sgml > prjdoc.1
+	## (jd) no docs at the moment...
+	#make doc-dvi
+
+	touch build-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp
+
+	## (jd) no docs at the moment...
+	#make clean
+
+	dh_clean
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs
+
+	# install the files
+	cp -r texmf debian/prjdoc/usr/share/
+	## (jd) no docs at the moment...
+	#mv $(CURDIR)/debian/prjdoc/usr/share/texmf/doc $(CURDIR)/debian/prjdoc/usr/share/doc/prjdoc
+	#mv $(CURDIR)/docs/*.dvi $(CURDIR)/debian/prjdoc/usr/share/doc/prjdoc
+
+	# fix the modes
+	chown -R root.root $(CURDIR)/debian/prjdoc/usr/share/texmf/
+	chmod -R a-x+X $(CURDIR)/debian/prjdoc/usr/share/texmf/
+
+binary-indep: build install
+	dh_testdir
+	dh_testroot
+	dh_installdocs
+	dh_installchangelogs 
+	dh_link
+	dh_compress
+	dh_fixperms
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary: binary-indep
+.PHONY: build clean binary-indep binary install configure

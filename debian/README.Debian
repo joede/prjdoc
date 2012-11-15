@@ -1,0 +1,26 @@
+README.Debian for `prjdoc'
+==========================
+
+This package implements a *LaTeX document class* to write manuals, requirement
+specification or other ISO9001 aware documents. The package comes with some
+additional styles for environments to define test cases and commands
+descriptions.
+
+I've written these styles as part of an ISO9001 project documentation in 1999.
+After reactivating this class as base of an pandoc template, I decided to make
+it public.
+
+See: https://code.google.com/p/jd-prjdoc/
+
+This version contains:
+
+  * prjdoc.cls: this is the class `prjdoc', the working horse of this package.
+
+  * milestones.sty: adds an environment to define milestones.
+
+  * testcase.sty: adds an environment to define test cases.
+
+  * thecommand.sty: adds an environment to describe commands. I'm
+    using this to specify serial protocols.
+
+  * abkuerz.sty: some german abbrevs.

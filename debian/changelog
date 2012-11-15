@@ -1,0 +1,24 @@
+prjdoc (0.3-1) unstable; urgency=low
+
+  * first published release!
+
+  * New default for the DIV value to fix changed margins in the base class.
+
+  * new command \TBD{} to add "to be defined" notes to the margin.
+
+  * new environemnt "PDhistory" a define a version history. This includes
+    release strings in the margin.
+
+ -- Joerg Desch <joerg.desch@gmail.com>  Wed, 15 Nov 2012 13:18:57 +0100
+
+prjdoc (0.2-2) unstable; urgency=low
+
+  * fix dependencies to match texlive instead of tetex.
+
+ -- Joerg Desch <joerg.desch@gmail.com>  Wed, 29 Jul 2009 12:29:57 +0200
+
+prjdoc (0.2-1) unstable; urgency=low
+
+  * initial debian package.
+
+ -- Joerg Desch <joerg.desch@gmail.com>  Wed,  2 Mar 2005 15:22:41 +0100
