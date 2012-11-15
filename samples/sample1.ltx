@@ -1,0 +1,107 @@
+\documentclass[english]{prjdoc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{milestones}
+\usepackage{thecommand}
+\usepackage{rcs}
+\usepackage[dvips]{hyperref}
+\hypersetup{pdfborder={0 0 1}}
+
+
+% --- Version des Dokuments
+\RCS $Revision: 1.1 $
+
+\PDauthor{Joerg Desch}
+\PDcompany{The Foo Bar Sample Company}
+\PDprjname{PRJ-001}
+\PDdoctype{Sample Document}
+\PDrevision{\RCSRevision}
+
+
+
+\begin{document}
+
+\PDtitlepage
+
+\tableofcontents
+
+
+
+% =======================================================================
+\section{Sample Requirement List}
+
+This is a sample for a \emph{requirement list}. Each item of the environment
+\emph{Request} is numbered. This number is unique. The prefix of the number is
+\emph{R} (English) or \emph{A} (German).
+
+\begin{Requests}
+\item Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
+amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
+diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+\item Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
+amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
+diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+\end{Requests}
+
+This paragraphs are outside the test case declarations. There should be some
+space above and below. The counter of the requirements is global, so every
+new environment continues the numbering.
+
+\begin{Requests}
+\item[req:sample] This requirement entry has a label. It could be referenced. See below!
+
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
+amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
+diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+\item Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
+amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
+diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+\end{Requests}
+
+Here we reference item~\ReqRef{req:sample} of the requirement list. To get a
+reference with a prefix, use \verb|\ReqRef| instead of \verb|\ref|.
+
+
+% =======================================================================
+\section{Milestones}
+
+The package \emph{milestones} implements a simple environment \emph
+{Milestones} to count milestones. These milestones are numbered with unique
+numbers and have the prefix \emph{M}. To get a reference with a prefix, use
+\verb|\MSRef| instead of \verb|\ref|.
+
+\begin{Milestones}
+\item Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+\item Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+\item[ms:sample] Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+\end{Milestones}
+
+Here the reference~\MSRef{ms:sample} points to the last entry in the list.
+
+\end{document}
