@@ -1,0 +1,116 @@
+\documentclass[english]{prjdoc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{milestones}
+\usepackage{thecommand}
+\usepackage{rcs}
+\usepackage[dvips]{hyperref}
+\hypersetup{pdfborder={0 0 1}}
+
+
+% --- Version des Dokuments
+\RCS $Revision: 1.1 $
+
+\PDauthor{Joerg Desch}
+\PDcompany{The Foo Bar Sample Company}
+\PDprjname{PRJ-001}
+\PDdoctype{Sample Protocol Specification}
+\PDrevision{\RCSRevision}
+
+\newcommand{\CMD}[1]{\texttt{#1}}%
+
+
+\begin{document}
+
+\PDtitlepage
+
+\tableofcontents
+
+
+% =======================================================================
+\section{An Overview}
+
+This package defines a new environment `thecommand'. This environment allows
+the description of a `communication command' or `programming function'. So
+this package will only be important for programmers.
+
+The package understand three options. \verb|[bf]| print the labels in bold
+face, while \verb|[it]| (the default) use \verb|\emph{}|. \verb|[english]|
+switch the label names from German to English.
+
+The environment `thecommand' has two parameter. One is optional and the
+other must be given. The needed one is the name of the command. This name
+is typeset between two horizontal lines. This line introcude the decription.
+The optional parameter is used as parameter for a call to \verb|\index{}|! So if
+want to use an index, use this parameter! NOTE: you have to insert calls to
+\verb|\makeindex| and \verb|\printindex| in your document!
+
+Inside the environment, the author can use special item-commands. Each of
+this items print a label which describe the type of the description text.
+
+The following item-commands are available:
+\begin{itemize}
+\item \verb|\pdSyntax|:    the general format of the command / function. This could be a abstract command or a function prototyp.
+\item \verb|\pdCmdCode|:   the command code etc.
+\item \verb|\pdParam|:     all given paramters
+\item \verb|\pdReturn|:    the returned value / data structure
+\item \verb|\pdDesc|:      the decription of the whole thing.
+\item \verb|\pdSample|:    this is the place to insert a sample
+\item \verb|\pdSeeAlso|:   textual references to other command names etc.
+\item \verb|\pdCmdItem|:   insert the parameter as `user defined' label.
+\end{itemize}
+
+
+% =======================================================================
+\section{The Commands}
+
+This is a simple example of message used in a protocol which is based on
+ASCII strings. Each message starts with an command and may have named
+parameters.
+
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
+amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
+diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+\begin{thecommand}{Message "`MOUNT"'}
+\pdSyntax    \CMD{MOUNT idx=}\emph{<index>}\CMD{ path='}\emph{<dir>}\CMD{'}
+\pdParam     \emph{<index>} is the index number of the drive.
+\pdParam     \emph{<dir>} is the base path to the mounted drive.
+\pdSample    \CMD{MOUNT idx=0 path='/media/usb/drive0'}
+\pdDesc
+Here we can add some descriptional text. Lorem ipsum dolor sit amet,
+consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
+accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+labore et dolore magna aliquyam erat, sed diam voluptua.
+\pdSeeAlso   \CMD{UMOUNT}
+\pdCmdItem{foobar:} just a sample.
+\end{thecommand}
+
+\begin{thecommand}{Message "`UMOUNT"'}
+\pdSyntax    \CMD{UMOUNT idx=}\emph{<index>}\CMD{ path='}\emph{<dir>}\CMD{'}
+\pdParam     \emph{<index>} is the index number of the drive.
+\pdParam     \emph{<dir>} is the base path to the removed drive.
+\pdSample    \CMD{UMOUNT idx=0 path='/media/usb/drive0'}
+\pdDesc
+Here we can add some descriptional text. Lorem ipsum dolor sit amet,
+consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
+accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
+accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+takimata sanctus est Lorem ipsum dolor sit amet.
+\pdSeeAlso   \CMD{MOUNT}
+\end{thecommand}
+
+
+\end{document}
