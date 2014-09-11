@@ -1,5 +1,5 @@
 #!/usr/bin/make -f
-# debian/rules for prjdoc package.
+# debian/rules for joede-latex-prjdoc package.
 # copyright 2002 by Jörg Desch
 # This file is original wrote by Joey Hess.
 
@@ -11,7 +11,7 @@ build: build-stamp
 build-stamp:
 	dh_testdir
 
-	#/usr/bin/docbook-to-man debian/prjdoc.sgml > prjdoc.1
+	#/usr/bin/docbook-to-man debian/joede-latex-prjdoc.sgml > joede-latex-prjdoc.1
 	## (jd) no docs at the moment...
 	#make doc-dvi
 
@@ -34,14 +34,12 @@ install: build
 	dh_installdirs
 
 	# install the files
-	cp -r texmf debian/prjdoc/usr/share/
+	install -o root -g root -d -m 755 debian/joede-latex-prjdoc/usr/share/texmf/tex/latex/joede-latex-prjdoc
+	install -o root -g root -m 644 latex/* debian/joede-latex-prjdoc/usr/share/texmf/tex/latex/joede-latex-prjdoc/
 	## (jd) no docs at the moment...
-	#mv $(CURDIR)/debian/prjdoc/usr/share/texmf/doc $(CURDIR)/debian/prjdoc/usr/share/doc/prjdoc
-	#mv $(CURDIR)/docs/*.dvi $(CURDIR)/debian/prjdoc/usr/share/doc/prjdoc
+	#install -o root -g root -m 644  $(CURDIR)/debian/joede-latex-prjdoc/usr/share/texmf/doc $(CURDIR)/debian/joede-latex-prjdoc/usr/share/doc/joede-latex-prjdoc
+	#install -o root -g root -m 644  $(CURDIR)/docs/*.dvi $(CURDIR)/debian/joede-latex-prjdoc/usr/share/doc/joede-latex-prjdoc
 
-	# fix the modes
-	chown -R root.root $(CURDIR)/debian/prjdoc/usr/share/texmf/
-	chmod -R a-x+X $(CURDIR)/debian/prjdoc/usr/share/texmf/
 
 binary-indep: build install
 	dh_testdir

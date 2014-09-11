@@ -1,11 +1,11 @@
-Source: prjdoc
+Source: joede-latex-prjdoc
 Section: tex
 Priority: optional
 Maintainer: Joerg Desch <joerg.desch@gmail.com>
 Standards-Version: 3.7.2
 Build-Depends: debhelper (>= 5.0.0)
 
-Package: prjdoc
+Package: joede-latex-prjdoc
 Architecture: all
 Depends: texlive-latex-base, texlive-latex-extra, rcs-latex|jd-rcs-latex
 Recommends: texlive-base-bin
