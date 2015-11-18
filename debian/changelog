@@ -1,3 +1,10 @@
+prjdoc (0.4-1) unstable; urgency=medium
+
+  * fix a problem with KOMA-Script packages of Jessie. Replaced scrpage
+    with scrpage2.
+
+ -- Joerg Desch <debian@jdesch.de>  Wed, 18 Nov 2015 10:51:15 +0100
+
 prjdoc (0.3-1) unstable; urgency=low
 
   * first published release!
@@ -9,16 +16,16 @@ prjdoc (0.3-1) unstable; urgency=low
   * new environemnt "PDhistory" a define a version history. This includes
     release strings in the margin.
 
- -- Joerg Desch <joerg.desch@gmail.com>  Wed, 15 Nov 2012 13:18:57 +0100
+ -- Joerg Desch <debian@jdesch.de>  Wed, 15 Nov 2012 13:18:57 +0100
 
 prjdoc (0.2-2) unstable; urgency=low
 
   * fix dependencies to match texlive instead of tetex.
 
- -- Joerg Desch <joerg.desch@gmail.com>  Wed, 29 Jul 2009 12:29:57 +0200
+ -- Joerg Desch <debian@jdesch.de>  Wed, 29 Jul 2009 12:29:57 +0200
 
 prjdoc (0.2-1) unstable; urgency=low
 
   * initial debian package.
 
- -- Joerg Desch <joerg.desch@gmail.com>  Wed,  2 Mar 2005 15:22:41 +0100
+ -- Joerg Desch <debian@jdesch.de>  Wed,  2 Mar 2005 15:22:41 +0100

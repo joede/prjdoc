@@ -8,6 +8,7 @@
   1999/08/30 v0.1 first implementation%
   2001/05/01 v0.2 minor changes
   2012/11/12 v0.3 new default for DIV value. Added TBD and history.
+  2015/11/18 v0.4 use package scrpage2
 ]%
 % this packages are required in the code of the options.
 \RequirePackage{lastpage}%
@@ -51,7 +52,7 @@
 \LoadClass[DIV12,headsepline]{scrartcl}
 \RequirePackage{ltxtable}%
 \RequirePackage{booktabs}%
-\RequirePackage{scrpage}%
+\RequirePackage{scrpage2}%
 \RequirePackage{abkuerz}%
 
 
