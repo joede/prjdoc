@@ -1,3 +1,10 @@
+joede-latex-prjdoc (0.4-1) unstable; urgency=medium
+
+  * fix a problem with KOMA-Script packages of Jessie. Replaced scrpage
+    with scrpage2.
+
+ -- Joerg Desch <debian@jdesch.de>  Wed, 18 Nov 2015 10:51:15 +0100
+
 joede-latex-prjdoc (0.3-2) stable; urgency=low
 
   * changed the upstream from google-code to github.
