@@ -1,4 +1,11 @@
-joede-latex-prjdoc (0.4-1) unstable; urgency=medium
+joede-latex-prjdoc (0.5-1) jessie-packport; urgency=medium
+
+  * switch to scrlayer-scrpage because scrpage2 seems to be
+    deprecated.
+
+ -- Joerg Desch <debian@jdesch.de>  Wed, 03 Feb 2016 10:26:26 +0100
+
+joede-latex-prjdoc (0.4-1) jessie-backport; urgency=medium
 
   * fix a problem with KOMA-Script packages of Jessie. Replaced scrpage
     with scrpage2.
