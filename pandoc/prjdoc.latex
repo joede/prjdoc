@@ -17,6 +17,7 @@ $else$
 % the font decleration
 \usepackage[T1]{fontenc}
 \usepackage{libertine}
+%\usepackage{lmodern}
 
 % more packages for prjdoc
 \usepackage{thecommand}
@@ -29,15 +30,14 @@ $if(title)$
     pdfborder={0 0 1},
     pdftitle={$title$},
     pdfauthor={$author$},
-$if(mydoctype)$
-    pdfsubject={$mydoctype$},
+$if(PDdoctype)$
+    pdfsubject={$PDdoctype$},
 $endif$
 %    pdfkeywords={},
 }
 $endif$
 \usepackage{amsmath}
 \usepackage{ctable}
-\usepackage{longtable}
 \usepackage{float} % provides the H option for float placement
 $if(xetex)$
 \usepackage{ifxetex}
@@ -106,14 +106,14 @@ $endfor$
 
 \PDauthor{$author$}
 \PDprjname{$title$}
-$if(mycompany)$
-\PDcompany{$mycompany$}
+$if(PDcompany)$
+\PDcompany{$PDcompany$}
 $endif$
-$if(mydoctype)$
-\PDdoctype{$mydoctype$}
+$if(PDdoctype)$
+\PDdoctype{$PDdoctype$}
 $endif$
-$if(mydocrev)$
-\PDrevision{$mydocrev$}
+$if(PDrevision)$
+\PDrevision{$PDrevision$}
 $endif$
 
 $if(title)$
