@@ -18,6 +18,10 @@ $else$
 \usepackage[T1]{fontenc}
 \usepackage{libertine}
 %\usepackage{lmodern}
+\makeatletter
+\renewcommand{\verbatim@font}{\ttfamily\footnotesize}
+\makeatother
+
 
 % more packages for prjdoc
 \usepackage{thecommand}
@@ -102,7 +106,8 @@ $endif$
 $for(header-includes)$
 $header-includes$
 $endfor$
-
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 \PDauthor{$author$}
 \PDprjname{$title$}
